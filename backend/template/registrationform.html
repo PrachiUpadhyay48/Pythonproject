@@ -1,0 +1,148 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+
+function RegistrationForm() {
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: '',
+  });
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await axios.post('/api/register/', formData);
+      // Handle success response
+      console.log(response.data);
+    } catch (error) {
+      // Handle error response
+      console.error(error.response.data);
+    }
+  };
+
+  const handleChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input type="text" name="username" onChange={handleChange} />
+      <input type="email" name="email" onChange={handleChange} />
+      <input type="password" name="password" onChange={handleChange} />
+      <button type="submit">Register</button>
+    </form>
+  );
+}
+
+export default RegistrationForm;
+
+import React, { useState } from 'react';
+import axios from 'axios';
+
+function LoginForm() {
+  const [formData, setFormData] = useState({
+    username: '',
+    password: '',
+  });
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await axios.post('/api/login/', formData);
+      // Handle success response
+      console.log(response.data);
+    } catch (error) {
+      // Handle error response
+      console.error(error.response.data);
+    }
+  };
+
+  const handleChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input type="text" name="username" onChange={handleChange} />
+      <input type="password" name="password" onChange={handleChange} />
+      <button type="submit">Login</button>
+    </form>
+  );
+}
+
+export default LoginForm;
+
+import React, { useState } from 'react';
+import axios from 'axios';
+
+function ForgotPasswordForm() {
+  const [email, setEmail] = useState('');
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await axios.post('/api/forgot-password/', { email });
+      // Handle success response
+      console.log(response.data);
+    } catch (error) {
+      // Handle error response
+      console.error(error.response.data);
+    }
+  };
+
+  const handleChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input type="email" value={email} onChange={handleChange} />
+      <button type="submit">Reset Password</button>
+    </form>
+  );
+}
+
+export default ForgotPasswordForm;
+
+import React, { useState } from 'react';
+import axios from 'axios';
+
+function IncidentCreationForm() {
+  const [formData, setFormData] = useState({
+    title: '',
+    description: '',
+    // other incident fields
+  });
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await axios.post('/api/incidents/', formData);
+      // Handle success response
+      console.log(response.data);
+    } catch (error) {
+      // Handle error response
+      console.error(error.response.data);
+    }
+  };
+
+  const handleChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input type="text" name="title" onChange={handleChange} />
+      <textarea name="description" onChange={handleChange}></textarea>
+      {/* other incident fields */}
+      <button type="submit">Create Incident</button>
+    </form>
+  );
+}
+
+export default IncidentCreationForm;
+
